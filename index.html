@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Future AI Chat</title>
+
+    <style>
+        body {
+            margin: 0;
+            background: #0f172a;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: white;
+        }
+
+        .chat {
+            width: 380px;
+            height: 520px;
+            background: #020617;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .header {
+            padding: 15px;
+            border-bottom: 1px solid #1e293b;
+        }
+
+        .header span {
+            font-size: 12px;
+            color: #22c55e;
+        }
+
+        .messages {
+            flex: 1;
+            padding: 10px;
+            overflow-y: auto;
+        }
+
+        .bot {
+            background: #1e293b;
+            padding: 8px;
+            margin: 6px 0;
+            border-radius: 8px;
+            max-width: 80%;
+        }
+
+        .user {
+            background: #2563eb;
+            padding: 8px;
+            margin: 6px 0;
+            border-radius: 8px;
+            max-width: 80%;
+            align-self: flex-end;
+            text-align: right;
+        }
+
+        .input {
+            display: flex;
+            padding: 10px;
+            border-top: 1px solid #1e293b;
+        }
+
+        .input input {
+            flex: 1;
+            padding: 8px;
+            border-radius: 6px;
+            border: none;
+            outline: none;
+        }
+
+        .input button {
+            margin-left: 6px;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 6px;
+            background: #2563eb;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div class="chat">
+    <div class="header">
+        <strong>Future AI</strong><br>
+        <span>online</span>
+    </div>
+
+    <div class="messages" id="messages">
+        <div class="bot">Привет. Я будущий ИИ.</div>
+    </div>
+
+    <div class="input">
+        <input id="text" placeholder="Напиши сообщение...">
+        <button onclick="send()">Отправить</button>
+    </div>
+</div>
+
+<script>
+    function send() {
+        const input = document.getElementById("text");
+        const messages = document.getElementById("messages");
+
+        if (input.value.trim() === "") return;
+
+        // сообщение пользователя
+        const user = document.createElement("div");
+        user.className = "user";
+        user.innerText = input.value;
+        messages.appendChild(user);
+
+        const text = input.value;
+        input.value = "";
+
+        // ответ бота (пока простой)
+        setTimeout(() => {
+            const bot = document.createElement("div");
+            bot.className = "bot";
+
+            if (text.toLowerCase().includes("привет")) {
+                bot.innerText = "Привет. Я здесь.";
+            } else if (text.toLowerCase().includes("кто ты")) {
+                bot.innerText = "Я прототип будущего искусственного интеллекта.";
+            } else {
+    const answers = [
+        "Интересный вопрос.",
+        "Я думаю над этим.",
+        "Расскажи подробнее.",
+        "Почему ты это спрашиваешь?",
+        "В будущем я смогу ответить лучше."
+    ];
+
+    bot.innerText = answers[Math.floor(Math.random() * answers.length)];
+}
+
+
+            messages.appendChild(bot);
+            messages.scrollTop = messages.scrollHeight;
+        }, 600);
+    }
+</script>
+
+</body>
+</html>
